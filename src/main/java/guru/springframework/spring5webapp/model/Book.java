@@ -11,13 +11,15 @@ public class Book {
     private  String title;
     private String isbn;
 
+    @ManyToOne
+    private Publisher publisher;
+
     @ManyToMany
     @JoinTable(name="author_book",joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name="author_id") )
     private Set<Author> authors = new HashSet<>();
 
-    @ManyToOne
-    private Publisher publisher;
+
 
     public Book() {
     }
@@ -88,8 +90,6 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", authors=" + authors +
-                ", publisher=" + publisher +
                 '}';
     }
 }
